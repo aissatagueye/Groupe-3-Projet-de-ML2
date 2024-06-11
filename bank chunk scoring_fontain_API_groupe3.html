@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Churn Prediction Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #343a40;
+        }
+        .navbar-brand, .nav-link {
+            color: #fff !important;
+        }
+        .sidebar {
+            height: 100vh;
+            background-color: #343a40;
+            padding-top: 20px;
+        }
+        .sidebar .nav-link {
+            color: #fff;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .card {
+            margin-top: 20px;
+        }
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Churn Prediction</a>
+    </nav>
+    <div class="d-flex">
+        <div class="sidebar d-none d-md-block col-md-3 col-lg-2">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-chart-line"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-user"></i> Predict Churn</a>
+                </li>
+                <!-- Add other menu items here -->
+            </ul>
+        </div>
+        <div class="content col-12 col-md-9 col-lg-10">
+            <div class="container-fluid">
+                <h1 class="mt-4">Groupe 3 : Customer Churn Prediction</h1>
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Customer Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="churn-prediction-form">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Customer ID</label>
+                                    <input type="number" class="form-control" placeholder="Customer ID" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Surname</label>
+                                    <input type="text" class="form-control" placeholder="Surname" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Credit Score</label>
+                                    <input type="number" class="form-control" placeholder="Credit Score" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Geography</label>
+                                    <select class="form-control" required>
+                                        <option value="France">France</option>
+                                        <option value="Spain">Spain</option>
+                                        <option value="Germany">Germany</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Gender</label>
+                                    <select class="form-control" required>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Age</label>
+                                    <input type="number" class="form-control" placeholder="Age" min="0" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Tenure</label>
+                                    <input type="number" class="form-control" placeholder="Tenure" min="0" max="100" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Balance</label>
+                                    <input type="number" class="form-control" placeholder="Balance" step="0.01" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Number of Products</label>
+                                    <input type="number" class="form-control" placeholder="Number of Products" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Has Credit Card</label>
+                                    <select class="form-control" required>
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Is Active Member</label>
+                                    <select class="form-control" required>
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Estimated Salary</label>
+                                    <input type="number" class="form-control" placeholder="Estimated Salary" step="0.01" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Predict</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; <span id="year"></span> Churn Prediction Dashboard</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        $(document).ready(function() {
+            $('#churn-prediction-form').on('submit', function(e) {
+                e.preventDefault();
+                var formData = $(this).serializeArray();
+                console.log(formData);
+                $.ajax({
+                    type: 'POST',
+                    url: '/predict',
+                    data: formData,
+                    success: function(response) {
+                        alert('Prediction: ' + response.prediction);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
